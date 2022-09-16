@@ -23,6 +23,7 @@ let playerSelection;
 // Global Tally variables
 let compScore = 0;
 let playerScore = 0;
+let rounds = 0;
 
 // function that plays single round of R/P/S
 function playRound(play, comp) {
@@ -73,13 +74,35 @@ function playRound(play, comp) {
     }
 }
 
-
-
+// make game function that runs gamae and outputs results live in html page
 function game() {
-    // for (let round = 0; round < 5; round++) {
-        console.log(playRound(playerSelection, getComputerChoice()));
-    // }
-    console.log('player: ', playerScore, '\ncomputer: ', compScore);
+    if (rounds === 0) {
+        // make variable for results div container 
+        const results = document.querySelector('.results');
+        
+        // if roundResult div already exists, update it - if not create one and add text.
+        const roundResult = document.createElement('div');
+        roundResult.classList.add('roundResult');
+        roundResult.textContent = playRound(playerSelection, getComputerChoice())
+
+        // create an element for tally
+        const tally = document.createElement('div');
+        tally.classList.add('tally');
+        tally.textContent = `player: ${playerScore} \n\ncomputer: ${compScore}`;
+        
+        // append everything to results container
+        results.append(roundResult, tally);
+    }
+    else {
+        let roundResult = document.querySelector('.roundResult');
+        let tally = document.querySelector('.tally');
+        
+        roundResult.textContent = playRound(playerSelection, getComputerChoice());
+        tally.textContent = `player: ${playerScore} \n\ncomputer: ${compScore}`;
+    }
+    rounds++;
+
+    // create winner output through DOM and add value to it based on scores
     if (playerScore > compScore) {
         console.log('You Win!');
     }
@@ -87,6 +110,7 @@ function game() {
         console.log("its a tie!");
     }
     else console.log('You Lose!');
+    
 }
 
 // ----- rps-ui updates (that can be sectioned off for now)
@@ -96,7 +120,6 @@ let buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         playerSelection = button.value;
-        console.log(playerSelection);
         game();
     });
 });
