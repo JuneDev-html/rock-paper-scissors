@@ -17,9 +17,8 @@ function getComputerChoice() {
 }
 
 
-// get player selection (case insensitive)
-// getPlayerChoice() function
 // playerSelection variable
+let playerSelection;
 
 // Global Tally variables
 let compScore = 0;
@@ -76,21 +75,19 @@ function playRound(play, comp) {
 
 
 
-// function game() {
-//     // for (let round = 0; round < 5; round++) {
-//         console.log(playRound(getPlayerChoice(), getComputerChoice()));
-//     // }
-//     console.log('player: ', playerScore, '\ncomputer: ', compScore);
-//     if (playerScore > compScore) {
-//         console.log('You Win!');
-//     }
-//     else if (playerScore === compScore) {
-//         console.log("its a tie!");
-//     }
-//     else console.log('You Lose!');
-// }
-
-// game();
+function game() {
+    // for (let round = 0; round < 5; round++) {
+        console.log(playRound(playerSelection, getComputerChoice()));
+    // }
+    console.log('player: ', playerScore, '\ncomputer: ', compScore);
+    if (playerScore > compScore) {
+        console.log('You Win!');
+    }
+    else if (playerScore === compScore) {
+        console.log("its a tie!");
+    }
+    else console.log('You Lose!');
+}
 
 // ----- rps-ui updates (that can be sectioned off for now)
 
@@ -98,6 +95,8 @@ let buttons = document.querySelectorAll('button');
 
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        console.log('hello');
+        playerSelection = button.value;
+        console.log(playerSelection);
+        game();
     });
 });
