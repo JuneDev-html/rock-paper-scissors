@@ -23,7 +23,7 @@ let playerSelection;
 // Global Tally variables
 let compScore = 0;
 let playerScore = 0;
-let rounds = 0;
+let gameStarted = false;
 
 // function that plays single round of R/P/S
 function playRound(play, comp) {
@@ -76,9 +76,11 @@ function playRound(play, comp) {
 
 // make game function that runs gamae and outputs results live in html page
 function game() {
-    if (rounds === 0) {
-        // make variable for results div container 
-        const results = document.querySelector('.results');
+    // make variable for results div container 
+    const results = document.querySelector('.results');
+    if (!gameStarted) {
+        // start game of 5 rounds
+        gameStarted = true;
         
         // if roundResult div already exists, update it - if not create one and add text.
         const roundResult = document.createElement('div');
@@ -94,22 +96,29 @@ function game() {
         results.append(roundResult, tally);
     }
     else {
+        
         let roundResult = document.querySelector('.roundResult');
         let tally = document.querySelector('.tally');
-        
+
         roundResult.textContent = playRound(playerSelection, getComputerChoice());
         tally.textContent = `player: ${playerScore} \n\ncomputer: ${compScore}`;
     }
-    rounds++;
 
-    // create winner output through DOM and add value to it based on scores
-    if (playerScore > compScore) {
-        console.log('You Win!');
-    }
-    else if (playerScore === compScore) {
-        console.log("its a tie!");
-    }
-    else console.log('You Lose!');
+    // if 5 games played, name winner
+    if (playerScore === 5 || compScore === 5) {
+        let endResult = '';
+        if (playerScore > compScore) {
+            endResult = 'You Win!';
+        }
+        else if (playerScore === compScore) {
+            endResult = "its a tie!";
+        }
+        else endResult = 'You Lose!';
+
+        alert(endResult);
+        location.reload();
+        
+    };   
     
 }
 
