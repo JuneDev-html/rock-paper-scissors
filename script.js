@@ -18,22 +18,8 @@ function getComputerChoice() {
 
 
 // get player selection (case insensitive)
-function getPlayerChoice() {
-    keeptrying = true;
-    while (keeptrying) {
-        let playerSelection = prompt('CHOOSE YOUR WEAPON!!').toLowerCase();
-
-        if (playerSelection === 'scissors' || playerSelection === 'rock' || playerSelection === 'paper') {
-            keeptrying = false;
-            return playerSelection;
-        }
-        else {
-            alert("Please enter Rock, Paper or Scissors (check spelling)");
-        } 
-    }
-    
-
-}
+// getPlayerChoice() function
+// playerSelection variable
 
 // Global Tally variables
 let compScore = 0;
@@ -90,18 +76,28 @@ function playRound(play, comp) {
 
 
 
-function game() {
-    // for (let round = 0; round < 5; round++) {
-        console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    // }
-    console.log('player: ', playerScore, '\ncomputer: ', compScore);
-    if (playerScore > compScore) {
-        console.log('You Win!');
-    }
-    else if (playerScore === compScore) {
-        console.log("its a tie!");
-    }
-    else console.log('You Lose!');
-}
+// function game() {
+//     // for (let round = 0; round < 5; round++) {
+//         console.log(playRound(getPlayerChoice(), getComputerChoice()));
+//     // }
+//     console.log('player: ', playerScore, '\ncomputer: ', compScore);
+//     if (playerScore > compScore) {
+//         console.log('You Win!');
+//     }
+//     else if (playerScore === compScore) {
+//         console.log("its a tie!");
+//     }
+//     else console.log('You Lose!');
+// }
 
-game();
+// game();
+
+// ----- rps-ui updates (that can be sectioned off for now)
+
+let buttons = document.querySelectorAll('button');
+
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        console.log('hello');
+    });
+});
