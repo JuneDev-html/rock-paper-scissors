@@ -91,9 +91,9 @@ function playRound(play, comp) {
 
 
 function game() {
-    for (let round = 0; round < 5; round++) {
+    // for (let round = 0; round < 5; round++) {
         console.log(playRound(getPlayerChoice(), getComputerChoice()));
-    }
+    // }
     console.log('player: ', playerScore, '\ncomputer: ', compScore);
     if (playerScore > compScore) {
         console.log('You Win!');
