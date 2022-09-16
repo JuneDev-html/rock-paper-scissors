@@ -4,6 +4,10 @@
     align-items: center;
 }
 
+button {
+    margin: 5px;
+}
+
 .results {
     margin-top: 2em;
     display: flex;
